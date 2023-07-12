@@ -1,0 +1,284 @@
+-- phpMyAdmin SQL Dump
+-- version 5.0.2
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1:3306
+-- Generation Time: Jul 11, 2023 at 02:28 PM
+-- Server version: 5.7.31
+-- PHP Version: 7.3.21
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `freakyfoodiesdb`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `followership`
+--
+
+DROP TABLE IF EXISTS `followership`;
+CREATE TABLE IF NOT EXISTS `followership` (
+  `follower_id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `restaurant_id` int(11) NOT NULL,
+  PRIMARY KEY (`follower_id`),
+  KEY `user_id` (`user_id`),
+  KEY `restaurant_id` (`restaurant_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `followership`
+--
+
+INSERT INTO `followership` (`follower_id`, `user_id`, `restaurant_id`) VALUES
+(1, 1, 1),
+(2, 1, 2),
+(3, 2, 3),
+(4, 2, 1),
+(5, 3, 1),
+(6, 2, 2),
+(7, 4, 3),
+(8, 5, 3);
+
+INSERT INTO `followership` (`follower_id`, `user_id`, `restaurant_id`) VALUES
+(9, 3, 2),
+(10, 4, 1),
+(11, 5, 2),
+(12, 6, 3),
+(13, 7, 2),
+(14, 8, 1),
+(15, 9, 3),
+(16, 10, 1),
+(17, 4, 2),
+(18, 5, 1),
+(19, 6, 2),
+(20, 7, 3);
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `menuitems`
+--
+
+DROP TABLE IF EXISTS `menuitems`;
+CREATE TABLE IF NOT EXISTS `menuitems` (
+  `menu_item_id` int(11) NOT NULL AUTO_INCREMENT,
+  `restaurant_id` int(11) NOT NULL,
+  `menu_item_name` varchar(255) NOT NULL,
+  `price` decimal(10,2) NOT NULL,
+  PRIMARY KEY (`menu_item_id`),
+  KEY `restaurant_id` (`restaurant_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `menuitems`
+--
+
+INSERT INTO `menuitems` (`menu_item_id`, `restaurant_id`, `menu_item_name`, `price`) VALUES
+(1, 1, 'Cheeseburger', '9.99'),
+(2, 1, 'French Fries', '3.99'),
+(3, 2, 'Espresso', '2.49'),
+(4, 2, 'Caesar Salad', '7.99'),
+(5, 3, 'Margherita Pizza', '12.99'),
+(6, 3, 'Garlic Bread', '4.99'),
+(7, 1, 'Item B', '12.99'),
+(8, 2, 'Item C', '8.99'),
+(9, 3, 'Item D', '15.50'),
+(10, 4, 'Item E', '9.99'),
+(11, 5, 'Item F', '11.50');
+
+INSERT INTO `menuitems` (`menu_item_id`, `restaurant_id`, `menu_item_name`, `price`) VALUES
+(12, 4, 'Item A', '7.99'),
+(13, 4, 'Item B', '10.99'),
+(14, 5, 'Item A', '14.99'),
+(15, 5, 'Item B', '6.99'),
+(16, 6, 'Item A', '8.99'),
+(17, 6, 'Item B', '5.99'),
+(18, 7, 'Item A', '11.99'),
+(19, 7, 'Item B', '9.99'),
+(20, 8, 'Item A', '12.99'),
+(21, 9, 'Item B', '8.99'),
+(22, 10, 'Item A', '15.99'),
+(23, 11, 'Item B', '13.99'),
+(24, 11, 'Item C', '6.99'),
+(25, 12, 'Item A', '9.99'),
+(26, 12, 'Item B', '4.99');
+
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `restaurants`
+--
+
+DROP TABLE IF EXISTS `restaurants`;
+CREATE TABLE IF NOT EXISTS `restaurants` (
+  `restaurant_id` int(11) NOT NULL AUTO_INCREMENT,
+  `restaurant_name` varchar(255) NOT NULL,
+  `contact_number` varchar(255) NOT NULL,
+  `address` varchar(255) NOT NULL,
+  `rating` decimal(3,2) DEFAULT '0.00',
+  `premium_status` tinyint(1) DEFAULT '0',
+  PRIMARY KEY (`restaurant_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `restaurants`
+--
+
+INSERT INTO `restaurants` (`restaurant_id`, `restaurant_name`, `contact_number`, `address`, `rating`, `premium_status`) VALUES
+(1, 'Tasty Treats', '123-456-7890', '123 Main St', '4.50', 1),
+(2, 'Cafe Delight', '987-654-3210', '456 Elm St', '3.80', 0),
+(3, 'Pizza Palace', '555-555-5555', '789 Oak St', '4.20', 1),
+(4, 'Restaurant D', '5551234567', '321 Lane, City D', '3.50', 0),
+(5, 'Restaurant E', '8889990000', '654 Boulevard, City E', '4.70', 1),
+(6, 'Restaurant F', '1112223333', '987 Road, City F', '4.20', 0);
+
+
+INSERT INTO `restaurants` (`restaurant_id`, `restaurant_name`, `contact_number`, `address`, `rating`, `premium_status`) VALUES
+(7, 'Gourmet Grill', '444-444-4444', '222 High St', '4.10', 0),
+(8, 'Sushi Sensation', '777-777-7777', '333 Pine St', '4.60', 1),
+(9, 'Burger Bistro', '666-666-6666', '555 Maple Ave', '3.90', 1),
+(10, 'Taco Town', '222-222-2222', '888 Oak Ave', '4.40', 0),
+(11, 'Steakhouse Supreme', '999-999-9999', '777 Cedar Rd', '4.80', 1),
+(12, 'Pasta Paradise', '123-987-4567', '999 Olive St', '4.30', 0),
+(13, 'Asian Fusion', '888-123-4567', '777 Walnut Ave', '4.10', 1),
+(14, 'Mexican Fiesta', '555-777-9999', '333 Elm Rd', '4.50', 0),
+(15, 'Seafood Delight', '111-222-3333', '222 Pine Ave', '4.70', 1),
+(16, 'Vegetarian Vibes', '444-555-6666', '111 Maple Rd', '4.20', 0),
+(17, 'BBQ Bonanza', '777-888-9999', '666 Cedar Ave', '4.60', 1),
+(18, 'Cafeteria Central', '222-333-4444', '555 Walnut Rd', '3.80', 0),
+(19, 'Italian Elegance', '999-888-7777', '888 Olive Ave', '4.40', 1),
+(20, 'Bakery Bliss', '111-222-3333', '777 Pine Rd', '4.50', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `reviews`
+--
+
+DROP TABLE IF EXISTS `reviews`;
+CREATE TABLE IF NOT EXISTS `reviews` (
+  `review_id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `menu_item_id` int(11) NOT NULL,
+  `review_text` text NOT NULL,
+  `item_rating` decimal(2,1) NOT NULL,
+  `review_date` date NOT NULL,
+  PRIMARY KEY (`review_id`),
+  KEY `user_id` (`user_id`),
+  KEY `menu_item_id` (`menu_item_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `reviews`
+--
+
+INSERT INTO `reviews` (`review_id`, `user_id`, `menu_item_id`, `review_text`, `item_rating`, `review_date`) VALUES
+(1, 1, 1, 'The cheeseburger was amazing!', '4.5', '2023-07-10'),
+(2, 1, 2, 'The fries were too salty.', '3.0', '2023-07-10'),
+(3, 2, 3, 'Great espresso!', '4.8', '2023-07-09'),
+(4, 2, 4, 'The Caesar salad lacked dressing.', '3.5', '2023-07-09'),
+(5, 3, 5, 'Delicious pizza!', '4.2', '2023-07-08'),
+(6, 3, 6, 'The garlic bread was a bit burnt.', '3.7', '2023-07-08'),
+(7, 2, 1, 'Great dish!', '4.5', '2023-07-11'),
+(8, 3, 1, 'Delicious!', '4.8', '2023-07-11'),
+(9, 2, 3, 'Good value for money.', '4.2', '2023-07-11'),
+(10, 4, 4, 'Tasty food!', '4.6', '2023-07-11'),
+(11, 5, 5, 'Excellent service!', '4.9', '2023-07-11');
+
+INSERT INTO `reviews` (`review_id`, `user_id`, `menu_item_id`, `review_text`, `item_rating`, `review_date`) VALUES
+(12, 4, 6, 'The bread was fresh and flavorful.', '4.3', '2023-07-10'),
+(13, 5, 7, 'Delicious item!', '4.5', '2023-07-10'),
+(14, 6, 8, 'The dish had a unique flavor.', '4.0', '2023-07-09'),
+(15, 7, 9, 'The item was a bit overpriced.', '3.5', '2023-07-09'),
+(16, 8, 10, 'Tasty item with great presentation.', '4.7', '2023-07-08'),
+(17, 9, 11, 'The dish was perfectly cooked.', '4.6', '2023-07-08'),
+(18, 6, 12, 'The item exceeded my expectations.', '4.8', '2023-07-11'),
+(19, 7, 13, 'The dish was disappointing.', '2.5', '2023-07-11'),
+(20, 8, 14, 'The item had a nice balance of flavors.', '4.2', '2023-07-11');
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `roles`
+--
+
+DROP TABLE IF EXISTS `roles`;
+CREATE TABLE IF NOT EXISTS `roles` (
+  `role_id` smallint(6) NOT NULL AUTO_INCREMENT,
+  `username` varchar(255) NOT NULL,
+  `role` varchar(10) NOT NULL,
+  PRIMARY KEY (`role_id`),
+  KEY `username` (`username`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `roles`
+--
+
+INSERT INTO `roles` (`role_id`, `username`, `role`) VALUES
+(1, 'bsmith', 'admin'),
+(2, 'pjones', 'user');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+DROP TABLE IF EXISTS `users`;
+CREATE TABLE IF NOT EXISTS `users` (
+  `user_id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `role_id` int(11) NOT NULL,
+  PRIMARY KEY (`user_id`),
+  KEY `role_id` (`role_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`user_id`, `username`, `password`, `email`, `role_id`) VALUES
+(1, 'john_doe', 'password123', 'john@example.com', 1),
+(2, 'jane_smith', 'abcd1234', 'jane@example.com', 2),
+(3, 'mike_johnson', 'mikepass', 'mike@example.com', 2),
+(4, 'admin123', 'adminpass', 'admin@example.com', 1),
+(5, 'customer1', 'customerpass', 'customer1@example.com', 2),
+(6, 'customer2', 'customerpass', 'customer2@example.com', 2),
+(7, 'manager1', 'managerpass', 'manager1@example.com', 3),
+(8, 'manager2', 'managerpass', 'manager2@example.com', 3),
+(9, 'bsmith', '$2y$10$8YA8LXUOZ6oqjAznV5MnkuQXDx2CEN.NpW1/hxCzFPZeKwrbeY4Hq', 'bsmith@gmail.com', 1),
+(10, 'pjones', '$2y$10$ZbEUmZvUscE2uqd5/YVfOuGDc6vaHPWbonyRywjx3A/nS77S/mJ3e', 'pjones@gmail.com', 2),
+(11, 'sarah_miller', 'sarahpass', 'sarah@example.com', 2),
+(12, 'robert_smith', 'robertpass', 'robert@example.com', 1),
+(13, 'amy_walker', 'amypass', 'amy@example.com', 2),
+(14, 'david_jones', 'davidpass', 'david@example.com', 3),
+(15, 'jennifer_davis', 'jenniferpass', 'jennifer@example.com', 2),
+(16, 'mark_wilson', 'markpass', 'mark@example.com', 1),
+(17, 'emily_adams', 'emilypass', 'emily@example.com', 2),
+(18, 'ryan_brown', 'ryanpass', 'ryan@example.com', 2),
+(19, 'olivia_thomas', 'oliviapass', 'olivia@example.com', 1),
+(20, 'charles_lee', 'charlespass', 'charles@example.com', 2);
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
