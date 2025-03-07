@@ -1,5 +1,7 @@
 # Social Food Review Web App
 ## Overview
+![Freaky](https://github.com/user-attachments/assets/7db3ee9f-1318-44c4-ace5-04ec7c6e9695)
+
 This project is a full stack social food review web application that allows users to create reviews about menu items of partnered restaurants. The app features a restaurant ranking system and a review feed to enhance user engagement.
 
 ## Features
