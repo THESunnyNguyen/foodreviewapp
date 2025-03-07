@@ -12,7 +12,7 @@ User Authentication: Secure user registration and login functionality.
 Session Management: Persistent user sessions to maintain login state.
 Admin Control: Administrative interface for managing users and reviews.
 
-#Technologies Used
+# Technologies Used
 Frontend: HTML5, CSS, JavaScript
 Backend: PHP
 Database: MySQL
